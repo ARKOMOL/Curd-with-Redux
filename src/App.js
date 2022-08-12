@@ -1,6 +1,4 @@
-
 import './App.css';
-import NavBar from './Layouts/NavBar';
 import Index from './Routes/Index';
 
 function App() {
