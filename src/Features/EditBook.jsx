@@ -1,26 +1,18 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux/es/exports";
-import { addBook } from "./BooksSlice";
-const AddBooks = () => {
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-  const navigate = useNavigate();
+import { useLocation } from "react-router-dom";
 
-  const dispatch = useDispatch();
+const EditBook = () => {
+  const location = useLocation();
+  console.log(location)
 
-  const numberOfBooks = useSelector((state) => state.booksReducer.books.length);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const book = { id: numberOfBooks + 1, title, author };
-    dispatch(addBook(book));
-    navigate("/show-book", { replace: true });
-  };
+  const [id, setId] = useState(location.state.id);
+  const [title, setTitle] = useState(location.state.title);
+  const [author, setAuthor] = useState(location.state.author);
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+        <h1>Edit Book</h1>
+      <form >
         <div className="form-field">
           <label htmlFor="title">Title: </label>
           <input
@@ -46,4 +38,4 @@ const AddBooks = () => {
   );
 };
 
-export default AddBooks;
+export default EditBook;
